@@ -1,10 +1,16 @@
 import asyncio
 import websockets
 
-async def hello():
-    async with websockets.connect("ws://localhost:8765") as websocket:
-        await websocket.send("Hello, world!")
-        message = await websocket.recv()
-        print(f"Received: {message}")
+SERVER_URI = "ws://localhost:7890"
 
-asyncio.run(hello())
+async def websocket_client():
+    async with websockets.connect(SERVER_URI) as websocket:
+        message = "Hello, WebSocket Server!"
+        print(f"Sending: {message}")
+        await websocket.send(message)
+
+        response = await websocket.recv()
+        print(f"Received: {response}")
+
+if __name__ == "__main__":
+    asyncio.run(websocket_client())
