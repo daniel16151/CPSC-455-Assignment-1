@@ -2,3 +2,5 @@ before we start the documentation, we have to say that we got help/assists from 
 
 firstly as we make our application at first in python, we were stuck in terms of where to start so we asked ai to help out and it gives us clues on what might be
 recommended to use in order to code further.
+
+We went ahead and updated server.py so that it can run until the call to shut down is sent, while also adding try and catch to see any errors that occur when a client connects or sends a message. Client.py was adjusted to connect through the port and send a message to the server, but it is running to errors when attempting to connect - error 1011. Unsure of exact cause, but am looking into it. 
