@@ -5,7 +5,7 @@ PORT = 7890
 
 print("testing on port " + str(PORT))
 
-async def echo(websocket, _):
+async def echo(websocket):
     print("A client connected")
     try:
         async for message in websocket:
@@ -14,15 +14,15 @@ async def echo(websocket, _):
     except websockets.exceptions.ConnectionClosedError:
         print("Client disconnected unexpectedly.")
     except Exception as e:
-        print(f"Server encountered an error: {e}")  # Log the error
+        print(f"Server encountered an error: {e}")
     finally:
-        print("Closing connection...")
+        print("Client disconnecting...")
         
         
 async def main():
     try:
-        server = await websockets.serve(echo, "localhost", PORT)
-        print(f"WebSocket server started on ws://localhost:{PORT}")
+        server = await websockets.serve(echo, "127.0.0.1", PORT)
+        print(f"WebSocket server started on ws://127.0.0.1:{PORT}")
         await server.wait_closed()
     except Exception as e:
         print(f"Fatal server error: {e}")
