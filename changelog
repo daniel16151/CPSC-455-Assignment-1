@@ -5,3 +5,7 @@ day 1 of the assignment:
 - adjusted server.py to run until a call to close it
 - added try and catch to test for potential errors when connecting from client
 - client adjusted to send a message to server to see if connection works
+- removed two arguments from echo
+- added user input to client
+- added way to disconnect from server through input
+

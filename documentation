@@ -4,3 +4,5 @@ firstly as we make our application at first in python, we were stuck in terms of
 recommended to use in order to code further.
 
 We went ahead and updated server.py so that it can run until the call to shut down is sent, while also adding try and catch to see any errors that occur when a client connects or sends a message. Client.py was adjusted to connect through the port and send a message to the server, but it is running to errors when attempting to connect - error 1011. Unsure of exact cause, but am looking into it. 
+
+Error was Echo utilizing path as a secondary argument, removed the second argument. For testing, server respond to client's messages with a repeat of their message. 
