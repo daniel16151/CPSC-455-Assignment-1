@@ -9,3 +9,9 @@ day 1 of the assignment:
 - added user input to client
 - added way to disconnect from server through input
 
+day 2 of the assignment:
+- got even more help from AI in terms of where the code went wrong.
+- adjusted client.py and server.py
+- ran through the files
+- started to work again with pings, even with server noticing what we typed in the server.py from client.py
+- pushed origin in to ensure changes
