@@ -5,7 +5,7 @@ PORT = 7890
 
 print("testing on port " + str(PORT))
 
-async def echo(websocket):
+async def echo(websocket, path): 
     print("A client connected")
     try:
         async for message in websocket:
@@ -17,7 +17,7 @@ async def echo(websocket):
         print(f"Server encountered an error: {e}")
     finally:
         print("Client disconnecting...")
-        
+        await websocket.close()
         
 async def main():
     try:
