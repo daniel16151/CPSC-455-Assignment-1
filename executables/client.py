@@ -2,7 +2,7 @@ import asyncio
 import websockets
 
 SERVER_URI = "ws://127.0.0.1:7890"
-
+        
 async def websocket_client():
     try:
         async with websockets.connect(SERVER_URI) as websocket:

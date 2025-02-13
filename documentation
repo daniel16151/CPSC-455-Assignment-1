@@ -8,3 +8,11 @@ We went ahead and updated server.py so that it can run until the call to shut do
 Error was Echo utilizing path as a secondary argument, removed the second argument. For testing, server respond to client's messages with a repeat of their message. 
 
 This was then changed with await websocket.close() on server.py and more adjustments on client.py that contain something like handling for ConnectionClosedError and it started to work with pings functioning in both sides.
+
+It was adjusted once again to remove path, as it is unnecessary when using later versions of websockets. Changed echo to messaging, as the function has changed to allow messaging between clients through the server. As of right now, we utilize ws, which is not as secure as wss, but we have not created / obtained a certificate for SSL - which means it will be unusable until then. Along with this, the code has not implemented a heartbeat mechanism, meaning that the clients will disconnect from the server if no message is sent in time.
+
+Instructions:
+Install python and websockets on two systems.
+Once they are installed, run server.py on one system, and wait until "Websocket server started on ws://127.0.0.1:7890" has popped up. 
+Once that has popped up, run client.py to join the server on the first system.
+Run client.py on the second system and enter your user input on either client to communicate with the other.

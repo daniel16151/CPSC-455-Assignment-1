@@ -4,24 +4,29 @@ import asyncio
 PORT = 7890
 
 print("testing on port " + str(PORT))
+connected_clients = set()
 
-async def echo(websocket, path): 
+async def messaging(websocket): 
     print("A client connected")
+    connected_clients.add(websocket)
     try:
         async for message in websocket:
             print(f"Message received: {message}")
-            await websocket.send(f"Pong: {message}")
+            for client in connected_clients:
+                if client != websocket:
+                    await client.send(message)
     except websockets.exceptions.ConnectionClosedError:
         print("Client disconnected unexpectedly.")
     except Exception as e:
         print(f"Server encountered an error: {e}")
     finally:
         print("Client disconnecting...")
+        connected_clients.remove(websocket)
         await websocket.close()
         
 async def main():
     try:
-        server = await websockets.serve(echo, "127.0.0.1", PORT)
+        server = await websockets.serve(messaging, "127.0.0.1", PORT)
         print(f"WebSocket server started on ws://127.0.0.1:{PORT}")
         await server.wait_closed()
     except Exception as e:
