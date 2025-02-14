@@ -21,3 +21,5 @@ day 2 of the assignment:
     - only necessary from before version 11 of websockets
 - allow server to differentiate clients and send message from one client to another
 - added connect_clients to keep track of each client that joins
+- created ssl self-signed (for now) certificate / ssl key
+- added function for verification from client to server

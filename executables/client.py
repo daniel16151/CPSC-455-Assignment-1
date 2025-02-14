@@ -1,11 +1,15 @@
 import asyncio
 import websockets
+import ssl
 
-SERVER_URI = "ws://127.0.0.1:7890"
+SERVER_URI = "wss://127.0.0.1:7890"
         
 async def websocket_client():
     try:
-        async with websockets.connect(SERVER_URI) as websocket:
+        ssl_context = ssl.create_default_context()
+        ssl_context.check_hostname = False
+        ssl_context.verify_mode = ssl.CERT_NONE
+        async with websockets.connect(SERVER_URI, ssl=ssl_context) as websocket:
             while True:
                 message = input("Enter message: ")
                 if message.lower() == 'end':

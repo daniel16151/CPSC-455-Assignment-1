@@ -11,6 +11,8 @@ This was then changed with await websocket.close() on server.py and more adjustm
 
 It was adjusted once again to remove path, as it is unnecessary when using later versions of websockets. Changed echo to messaging, as the function has changed to allow messaging between clients through the server. As of right now, we utilize ws, which is not as secure as wss, but we have not created / obtained a certificate for SSL - which means it will be unusable until then. Along with this, the code has not implemented a heartbeat mechanism, meaning that the clients will disconnect from the server if no message is sent in time.
 
+Implemented SSL certification and private key. For now, the code will be using a self-signed certification for ease of use and testing, but will adjust in the future for proper protection. 
+
 Instructions:
 Install python and websockets on two systems.
 Once they are installed, run server.py on one system, and wait until "Websocket server started on ws://127.0.0.1:7890" has popped up. 
