@@ -26,8 +26,6 @@ async def messaging(websocket):
         
 async def main():
     try:
-        server = await websockets.serve(messaging, "0.0.0.0", PORT)
-        print(f"Websocket server started on ws://0.0.0.0:{PORT}")
         ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
         ssl_context.load_cert_chain(certfile="./executables/certificate.pem", keyfile="./executables/privateKey.pem")
         server = await websockets.serve(messaging, "0.0.0.0", PORT, ssl=ssl_context)
