@@ -2,7 +2,7 @@ import asyncio
 import websockets
 import ssl
 
-SERVER_URI = "wss://127.0.0.1:7890"
+SERVER_URI = "wss://10.67.33.35:7890"
         
 async def websocket_client():
     try:
