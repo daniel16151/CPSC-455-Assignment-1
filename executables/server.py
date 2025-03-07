@@ -6,15 +6,21 @@ PORT = 7890
 
 connected_clients = set()
 
+def format_message(message):
+    message = message.replace("**", "<b>").replace("**", "</b>")
+    message = message.replace("*", "<i>").replace("*", "</i>")
+    return message
+
 async def messaging(websocket): 
     print("A client connected")
     connected_clients.add(websocket)
     try:
         async for message in websocket:
             print(f"Message received: {message}")
+            formatted_message = format_message(message)
             for client in connected_clients:
                 if client != websocket:
-                    await client.send(message)
+                    await client.send(formatted_message)
     except websockets.exceptions.ConnectionClosedError:
         print("Client disconnected unexpectedly.")
     except Exception as e:

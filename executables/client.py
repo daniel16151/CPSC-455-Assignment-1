@@ -3,6 +3,11 @@ import websockets
 import ssl
 
 SERVER_URI = "wss://10.67.33.35:7890"
+
+def display_message(message):
+    message = message.replace("<b>", "**").replace("</b>", "**") 
+    message = message.replace("<i>", "*").replace("</i>", "*")
+    return message
         
 async def websocket_client():
     try:
@@ -20,7 +25,8 @@ async def websocket_client():
                 await websocket.send(message)
 
                 response = await websocket.recv()
-                print(f"Received: {response}")
+                formatted_response = display_message(response)
+                print(f"Received: {formatted_response}")
     except websockets.exceptions.ConnectionClosedError:
         print("Connection was closed by the server.")
     except Exception as e:

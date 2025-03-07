@@ -1,0 +1,12 @@
+before we start the documentation, once again we have to say that we got help/assists from chatgpt and gemini ai, thank you.
+
+firstly, we started looking at our code and wonder how we can add more into it, and that's when it clicked that we should start simple first with emoji and rich text support. knowing that python already support emojis, we knew that we needed rich text support now, so we implemented such practices, especially with chatgpt's help in terms of what hints it gave us, and we implemented after it clicked on us. we then ran the code and the code was able to support both emoji and rich text support.
+
+Implemented SSL certification and private key. For now, the code will be using a self-signed certification for ease of use and testing, but will adjust in the future for proper protection. 
+
+Instructions:
+Install python and websockets on two systems.
+Once they are installed, run server.py on one system, and wait until "Websocket server started on ws://127.0.0.1:7890" has popped up. 
+Once that has popped up, run client.py to join the server on the first system.
+Run client.py on the second system and enter your user input on either client to communicate with the other.
+(For the URI, make sure to set [127.0.0.1] to the local IP of the host system. This can be found by entering ipconfig into cmd prompt in host system.)
