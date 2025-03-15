@@ -23,3 +23,20 @@ day 2 of the assignment:
 - added connect_clients to keep track of each client that joins
 - created ssl self-signed (for now) certificate / ssl key
 - added function for verification from client to server
+
+-imported 3 new libraries
+    -queue
+        -allows one client to send multiple messages without needing to wait for the other client to respond
+    -tkinter
+        -allows creation of gui from terminal
+    -threading
+        -allows concurrent use of gui / websocket_client 
+-added new def for sending and receiving messages
+    -adjusted websocket_client to implement those changes with the queue system
+-added new def for start / creation of gui
+-added def click_send and def poll within def start_gui to add a send button
+    -click_send for send button
+    -poll for checking message queue / updating gui
+-main adjusted to create thread and gui
+
+

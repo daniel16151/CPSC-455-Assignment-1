@@ -4,6 +4,9 @@ firstly, we started looking at our code and wonder how we can add more into it, 
 
 Implemented SSL certification and private key. For now, the code will be using a self-signed certification for ease of use and testing, but will adjust in the future for proper protection. 
 
+In part 1, we encountered the issue of a client requiring a response before it can send a message again, so we implemented a queue system that would separate the message / receive into different functions, allowing them to work in parallel, instead of messaging waiting on response. The user also had an issue with ease of use, so we implemented a simplistic GUI that will be updated with more flavor in a later iteration. This GUI is created upon running client.py, and introduces a white chatbox where you can type and send messages to other clients on the network, along with a better view of the chat. Our next goal will be introducing a database to store user and passwords, so we can identify the connected clients and allow each client to individually message each other.
+Another aim is to update the way to connect, as localhost will not cut it. 
+
 Instructions:
 Install python and websockets on two systems.
 Once they are installed, run server.py on one system, and wait until "Websocket server started on ws://127.0.0.1:7890" has popped up. 
