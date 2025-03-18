@@ -1,3 +1,26 @@
 day 1 of the assignment:
 - got help/assists from AI once again in terms of how to setup basic text formatting within both client and server.py and client.py
 - adjusted the code in terms of what could be beneficial for the code according to what AI suggested
+
+day 2 of the assignment:
+- undid 2nd argument on echo
+    - only necessary from before version 11 of websockets
+- allow server to differentiate clients and send message from one client to another
+- added connect_clients to keep track of each client that joins
+- created ssl self-signed (for now) certificate / ssl key
+- added function for verification from client to server
+
+-imported 3 new libraries
+    -queue
+        -allows one client to send multiple messages without needing to wait for the other client to respond
+    -tkinter
+        -allows creation of gui from terminal
+    -threading
+        -allows concurrent use of gui / websocket_client 
+-added new def for sending and receiving messages
+    -adjusted websocket_client to implement those changes with the queue system
+-added new def for start / creation of gui
+-added def click_send and def poll within def start_gui to add a send button
+    -click_send for send button
+    -poll for checking message queue / updating gui
+-main adjusted to create thread and gui
