@@ -27,7 +27,7 @@ day 2 of the assignment:
 
 day 3 of the assignment:
 - asked AI for help in terms of how file sharing capabilities and chat log system would work in our code
-- added in file sharing capabilities and chat log system but doesn't seem to be fully functional yet
+- added in file sharing capabilities and chat log system and it seems to be fully functional from the last time it was tested
 
 -added in an import library from tkinter
     - filedialog
