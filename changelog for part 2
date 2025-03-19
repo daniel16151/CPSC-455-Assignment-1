@@ -1,22 +1,8 @@
 day 1 of the assignment:
-- installed and implemented websockets in python 
-- got help/assists from AI in terms of what libraries/definitions/or whatever exists within websockets and asyncio
-
-- looked at a video and used it to to help create the server portion of server.py
-- adjusted server.py to run until a call to close it
-- added try and catch to test for potential errors when connecting from client
-- client adjusted to send a message to server to see if connection works
-- removed two arguments from echo
-- added user input to client
-- added way to disconnect from server through input
+- got help/assists from AI once again in terms of how to setup basic text formatting within both client and server.py and client.py
+- adjusted the code in terms of what could be beneficial for the code according to what AI suggested
 
 day 2 of the assignment:
-- got even more help from AI in terms of where the code went wrong.
-- adjusted client.py and server.py
-- ran through the files
-- started to work again with pings, even with server noticing what we typed in the server.py from client.py
-- pushed origin in to ensure changes
-
 - undid 2nd argument on echo
     - only necessary from before version 11 of websockets
 - allow server to differentiate clients and send message from one client to another
@@ -39,4 +25,10 @@ day 2 of the assignment:
     -poll for checking message queue / updating gui
 -main adjusted to create thread and gui
 
+day 3 of the assignment:
+- asked AI for help in terms of how file sharing capabilities and chat log system would work in our code
+- added in file sharing capabilities and chat log system but doesn't seem to be fully functional yet
 
+-added in an import library from tkinter
+    - filedialog
+        - allows file sharing capabilities in tkinter
