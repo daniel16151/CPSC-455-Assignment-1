@@ -24,3 +24,7 @@ day 2 of the assignment:
     -click_send for send button
     -poll for checking message queue / updating gui
 -main adjusted to create thread and gui
+
+day 3 of the assignment:
+- asked AI for help in terms of how file sharing capabilities would work in our code
+- added in file sharing capabilities but doesn't seem to be fully functional yet
