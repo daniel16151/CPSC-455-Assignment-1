@@ -26,5 +26,9 @@ day 2 of the assignment:
 -main adjusted to create thread and gui
 
 day 3 of the assignment:
-- asked AI for help in terms of how file sharing capabilities would work in our code
-- added in file sharing capabilities but doesn't seem to be fully functional yet
+- asked AI for help in terms of how file sharing capabilities and chat log system would work in our code
+- added in file sharing capabilities and chat log system but doesn't seem to be fully functional yet
+
+-added in an import library from tkinter
+    - filedialog
+        - allows file sharing capabilities in tkinter
