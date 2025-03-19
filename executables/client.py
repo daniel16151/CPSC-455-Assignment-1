@@ -14,10 +14,23 @@ send_queue = None
 asyncio_loop = None
 websocket_ref = None  
 
+import datetime
+
+LOG_FILE = "client_chat_log.txt"
+
+def log_message(message):
+    """Append message to the log file with a timestamp."""
+    with open(LOG_FILE, "a", encoding="utf-8") as log:
+        timestamp = datetime.datetime.now().strftime("[%Y-%m-%d %H:%M:%S]")
+        log.write(f"{timestamp} {message}\n")
+
+
 def display_message(message):
     message = message.replace("<b>", "**").replace("</b>", "**") 
     message = message.replace("<i>", "*").replace("</i>", "*")
+    log_message(message)  # Log message
     return message
+
 
 async def send_message(websocket):
     global send_queue
@@ -26,9 +39,12 @@ async def send_message(websocket):
         if msg.lower() == 'end':
             await websocket.close()
             message_queue.put("Ending connection.")
+            log_message("Ending connection.")
             break
-        await websocket.send(msg) 
+        await websocket.send(msg)
+        log_message(f"Sent: {msg}")  
         message_queue.put(f"Sent: {msg}")
+
 
 async def send_file(file_path):
     """Send a file as binary data."""
@@ -73,18 +89,22 @@ async def receive_message(websocket):
                     filename = response.split(":", 1)[1]
                     file_buffer = open(f"received_{filename}", "wb")
                     message_queue.put(f"Receiving file: {filename}")
+                    log_message(f"Receiving file: {filename}")  # Log file reception
                 elif response == "FILE_END" and file_buffer:
                     file_buffer.close()
                     message_queue.put(f"File received: received_{filename}")
+                    log_message(f"File received: received_{filename}")  # Log file completion
                     filename, file_buffer = None, None
                 else:
                     message_queue.put(f"Receive: {display_message(response)}")
+                    log_message(f"Received: {response}")  # Log received message
 
-            elif isinstance(response, bytes) and file_buffer:  
+            elif isinstance(response, bytes) and file_buffer:
                 file_buffer.write(response)
 
         except websockets.exceptions.ConnectionClosed:
             message_queue.put("Connection closed.")
+            log_message("Connection closed.")
             break
 
 async def websocket_client():

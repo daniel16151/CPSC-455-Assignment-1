@@ -5,8 +5,20 @@ import ssl
 PORT = 7890
 connected_clients = set()
 
+import datetime
+
+LOG_FILE = "server_chat_log.txt"
+
+def log_message(message):
+    """Append message to the log file with a timestamp."""
+    with open(LOG_FILE, "a", encoding="utf-8") as log:
+        timestamp = datetime.datetime.now().strftime("[%Y-%m-%d %H:%M:%S]")
+        log.write(f"{timestamp} {message}\n")
+
+
 async def messaging(websocket): 
     print("A client connected")
+    log_message("A client connected")
     connected_clients.add(websocket)
     
     try:
@@ -16,6 +28,8 @@ async def messaging(websocket):
                     filename = message.split(":", 1)[1]
                     file_buffer = open(f"received_{filename}", "wb")
                     print(f"Receiving file: {filename}")
+                    log_message(f"Receiving file: {filename}")
+
                     for client in connected_clients:
                         if client != websocket:
                             await client.send(f"FILE:{filename}")
@@ -23,17 +37,22 @@ async def messaging(websocket):
                 elif message == "FILE_END" and file_buffer:
                     file_buffer.close()
                     print(f"File received: {filename}")
+                    log_message(f"File received: {filename}")
+
                     for client in connected_clients:
                         if client != websocket:
                             await client.send("FILE_END")
                     file_buffer = None
 
                 else:
+                    print(f"Received: {message}")
+                    log_message(f"Received: {message}")
+
                     for client in connected_clients:
                         if client != websocket:
                             await client.send(message)
 
-            elif isinstance(message, bytes) and file_buffer:  
+            elif isinstance(message, bytes) and file_buffer:
                 file_buffer.write(message)
                 for client in connected_clients:
                     if client != websocket:
@@ -41,6 +60,7 @@ async def messaging(websocket):
 
     except websockets.exceptions.ConnectionClosedError:
         print("Client disconnected unexpectedly.")
+        log_message("Client disconnected unexpectedly.")
     finally:
         connected_clients.remove(websocket)
         await websocket.close()
