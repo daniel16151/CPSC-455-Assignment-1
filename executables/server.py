@@ -39,6 +39,9 @@ def hash_pass(password):
 
 user = load_user()
 
+def sanitize(message: str) -> str:
+    return message.strip().replace("\n","").replace("<","").replace(">","").replace("(","").replace(")","")
+
 async def messaging(websocket): 
     print("A client connected")
     log_message("A client connected")
@@ -57,6 +60,32 @@ async def messaging(websocket):
                         continue
                     elif state == "register_pass":
                         password = message.strip()
+                        special_characters = "~`!@#$%^&*-_=+}{[]|,.?"
+                        forbidden_characters = "([\/:;])&'`"
+                        if len(password) < 8:
+                            await websocket.send("Error: Password must be at least 8 characters long. Enter a new password:")
+                            continue
+                        if len(password) > 20:
+                            await websocket.send("Error: Password must be at most 20 characters long. Enter a new password:")
+                            continue
+                        if not any(l.isupper() for l in password):
+                            await websocket.send("Error: Password must include at least 1 uppercase character. Enter a new password:")
+                            continue
+                        if not any(l.islower() for l in password):
+                            await websocket.send("Error: Password must include at least 1 lowercase character. Enter a new password:")
+                            continue
+                        if not any(l.isdigit() for l in password):
+                            await websocket.send("Error: Password must include at least 1 digit. Enter a new password:")
+                            continue
+                        if not any(l in special_characters for l in password):
+                            await websocket.send("Error: Password must include at least 1 special character. Enter a new password:")
+                            continue
+                        if not any(l in special_characters for l in password):
+                            await websocket.send("Error: Password must include at least 1 special character. Enter a new password:")
+                            continue
+                        if any(l in forbidden_characters for l in password):
+                            await websocket.send("Error: Password must not include any forbidden characters ([\"/:;])&'`: . Enter a new password:")
+                            continue
                         data = client_temp.get(websocket, {})
                         username = data.get("username")
                         if username is None:

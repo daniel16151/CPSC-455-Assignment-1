@@ -7,7 +7,7 @@ import queue
 from tkinter import filedialog
 import os
 
-SERVER_URI = "wss://project1part2.tplinkdns.com:443"
+SERVER_URI = "wss://0cb9248g-443.usw3.devtunnels.ms/:443"
 message_queue = queue.Queue()
 send_queue = None
 asyncio_loop = None
@@ -136,7 +136,7 @@ def start_gui():
     display.pack(padx=10, pady=10)
     entry = tk.Entry(root, width=50)
     entry.pack(side='left', padx=(10,0), pady=(0,10))
-
+    entry.bind("<Return>", lambda event: click_send())
     def click_send():
         msg = entry.get().strip()
         if msg:

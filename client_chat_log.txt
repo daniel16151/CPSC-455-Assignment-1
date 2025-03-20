@@ -214,3 +214,37 @@
 [2025-03-19 23:40:10] Sent: bob
 [2025-03-19 23:40:10] Logged in as bob
 [2025-03-19 23:40:10] Received: Logged in as bob
+[2025-03-20 00:05:21] Connection closed.
+[2025-03-20 00:19:28] Sent: L
+[2025-03-20 00:19:28] Enter username:
+[2025-03-20 00:19:28] Received: Enter username:
+[2025-03-20 00:19:31] Sent: bob
+[2025-03-20 00:19:31] Enter password:
+[2025-03-20 00:19:31] Received: Enter password:
+[2025-03-20 00:19:32] Sent: bob
+[2025-03-20 00:19:32] Logged in as bob
+[2025-03-20 00:19:32] Received: Logged in as bob
+[2025-03-20 00:33:48] Sent: R
+[2025-03-20 00:33:48] Enter username:
+[2025-03-20 00:33:48] Received: Enter username:
+[2025-03-20 00:33:52] Sent: bob
+[2025-03-20 00:33:52] Enter password:
+[2025-03-20 00:33:52] Received: Enter password:
+[2025-03-20 00:33:56] Sent: 10
+[2025-03-20 00:33:56] Error: Password must be at least 8 characters long. Enter a new password:
+[2025-03-20 00:33:56] Received: Error: Password must be at least 8 characters long. Enter a new password:
+[2025-03-20 00:34:04] Sent: 10000000
+[2025-03-20 00:34:04] Error: User already taken.
+[2025-03-20 00:34:04] Received: Error: User already taken.
+[2025-03-20 01:07:29] Sent: R
+[2025-03-20 01:07:29] Enter username:
+[2025-03-20 01:07:29] Received: Enter username:
+[2025-03-20 01:07:31] Sent: tom
+[2025-03-20 01:07:31] Enter password:
+[2025-03-20 01:07:31] Received: Enter password:
+[2025-03-20 01:07:53] Sent: Aiejqftgteuih%!@$01()
+[2025-03-20 01:07:53] Error: Password must be at most 20 characters long. Enter a new password:
+[2025-03-20 01:07:53] Received: Error: Password must be at most 20 characters long. Enter a new password:
+[2025-03-20 01:08:08] Sent: Aguhewfiuh10*(
+[2025-03-20 01:08:08] Error: Password must not include any forbidden characters (["/:;])&'`: . Enter a new password:
+[2025-03-20 01:08:08] Received: Error: Password must not include any forbidden characters (["/:;])&'`: . Enter a new password:
