@@ -1,0 +1,216 @@
+[2025-03-19 18:38:47] Receiving file: lab1.txt
+[2025-03-19 18:38:47] File received: received_lab1.txt
+[2025-03-19 18:42:54] Connection closed.
+[2025-03-19 18:49:24] Sent: sadjhiuod
+[2025-03-19 18:49:24] sadjhiuod
+[2025-03-19 18:49:24] Received: sadjhiuod
+[2025-03-19 18:52:02] Sent: hello my firned
+[2025-03-19 18:52:02] hello my firned
+[2025-03-19 18:52:02] Received: hello my firned
+[2025-03-19 18:55:33] Sent: hi
+[2025-03-19 18:55:33] hi
+[2025-03-19 18:55:33] Received: hi
+[2025-03-19 18:55:38] Sent: huh
+[2025-03-19 18:55:38] huh
+[2025-03-19 18:55:38] Received: huh
+[2025-03-19 18:58:30] Sent: im joining in
+[2025-03-19 18:58:30] im joining in
+[2025-03-19 18:58:30] Received: im joining in
+[2025-03-19 18:58:30] Received: im joining in
+[2025-03-19 22:27:19] Sent: L
+[2025-03-19 22:27:19] Enter username:
+[2025-03-19 22:27:19] Received: Enter username:
+[2025-03-19 22:27:29] Sent: sanelvis
+[2025-03-19 22:27:29] Enter password:
+[2025-03-19 22:27:29] Received: Enter password:
+[2025-03-19 22:27:37] Sent: sanelvis
+[2025-03-19 22:27:37] ERROR: User/Pass not found.
+[2025-03-19 22:27:37] Received: ERROR: User/Pass not found.
+[2025-03-19 22:27:45] Sent: R
+[2025-03-19 22:27:45] Enter username:
+[2025-03-19 22:27:45] Received: Enter username:
+[2025-03-19 22:27:54] Sent: bob1
+[2025-03-19 22:27:54] ERROR: You must log in or register first. Send 'L' for login or 'R' for registration.
+[2025-03-19 22:27:54] Received: ERROR: You must log in or register first. Send 'L' for login or 'R' for registration.
+[2025-03-19 22:30:22] Sent: R
+[2025-03-19 22:30:22] Enter username:
+[2025-03-19 22:30:22] Received: Enter username:
+[2025-03-19 22:30:26] Sent: help
+[2025-03-19 22:30:26] ERROR: You must log in or register first. Send 'L' for login or 'R' for registration.
+[2025-03-19 22:30:26] Received: ERROR: You must log in or register first. Send 'L' for login or 'R' for registration.
+[2025-03-19 22:34:29] Sent: R
+[2025-03-19 22:34:29] Enter username:
+[2025-03-19 22:34:29] Received: Enter username:
+[2025-03-19 22:34:32] Sent: bob
+[2025-03-19 22:34:32] Enter password:
+[2025-03-19 22:34:32] Received: Enter password:
+[2025-03-19 22:34:37] Sent: bob
+[2025-03-19 22:34:37] SUCCESS: Registration successful.
+[2025-03-19 22:34:37] Received: SUCCESS: Registration successful.
+[2025-03-19 22:36:39] Sent: R
+[2025-03-19 22:36:39] Enter username:
+[2025-03-19 22:36:39] Received: Enter username:
+[2025-03-19 22:36:46] Sent: bob
+[2025-03-19 22:36:46] ERROR: You must log in or register first. Send 'L' for login or 'R' for registration.
+[2025-03-19 22:36:46] Received: ERROR: You must log in or register first. Send 'L' for login or 'R' for registration.
+[2025-03-19 22:36:57] Sent: R
+[2025-03-19 22:36:57] Enter username:
+[2025-03-19 22:36:57] Received: Enter username:
+[2025-03-19 22:37:00] Sent: bob
+[2025-03-19 22:37:00] ERROR: You must log in or register first. Send 'L' for login or 'R' for registration.
+[2025-03-19 22:37:00] Received: ERROR: You must log in or register first. Send 'L' for login or 'R' for registration.
+[2025-03-19 22:37:05] Sent: R
+[2025-03-19 22:37:05] Enter username:
+[2025-03-19 22:37:05] Received: Enter username:
+[2025-03-19 22:37:07] Sent: bob1
+[2025-03-19 22:37:07] ERROR: You must log in or register first. Send 'L' for login or 'R' for registration.
+[2025-03-19 22:37:07] Received: ERROR: You must log in or register first. Send 'L' for login or 'R' for registration.
+[2025-03-19 22:40:45] Sent: R
+[2025-03-19 22:40:45] Enter username:
+[2025-03-19 22:40:45] Received: Enter username:
+[2025-03-19 22:40:47] Sent: bob
+[2025-03-19 22:40:47] Enter password:
+[2025-03-19 22:40:47] Received: Enter password:
+[2025-03-19 22:40:50] Sent: bob
+[2025-03-19 22:40:50] 
+[2025-03-19 22:40:50] Received: 
+[2025-03-19 22:45:42] Sent: R
+[2025-03-19 22:45:42] Enter username:
+[2025-03-19 22:45:42] Received: Enter username:
+[2025-03-19 22:45:44] Sent: bob
+[2025-03-19 22:45:44] Enter password:
+[2025-03-19 22:45:44] Received: Enter password:
+[2025-03-19 22:45:47] Sent: bob
+[2025-03-19 22:45:47] Registration Successful
+[2025-03-19 22:45:47] Received: Registration Successful
+[2025-03-19 22:45:51] Sent: R
+[2025-03-19 22:45:51] Enter username:
+[2025-03-19 22:45:51] Received: Enter username:
+[2025-03-19 22:45:53] Sent: bob
+[2025-03-19 22:45:53] Enter password:
+[2025-03-19 22:45:53] Received: Enter password:
+[2025-03-19 22:45:56] Sent: bob
+[2025-03-19 22:45:56] Error: User already taken.
+[2025-03-19 22:45:56] Received: Error: User already taken.
+[2025-03-19 22:46:01] Sent: L
+[2025-03-19 22:46:01] Enter username:
+[2025-03-19 22:46:01] Received: Enter username:
+[2025-03-19 22:46:05] Sent: bob
+[2025-03-19 22:46:05] Enter password:
+[2025-03-19 22:46:05] Received: Enter password:
+[2025-03-19 22:46:07] Sent: bob
+[2025-03-19 22:46:07] Logged in as bob
+[2025-03-19 22:46:07] Received: Logged in as bob
+[2025-03-19 22:47:27] Sent: R
+[2025-03-19 22:47:27] Enter username:
+[2025-03-19 22:47:27] Received: Enter username:
+[2025-03-19 22:47:43] Sent: L
+[2025-03-19 22:47:43] Enter username:
+[2025-03-19 22:47:43] Received: Enter username:
+[2025-03-19 22:47:46] Sent: bob
+[2025-03-19 22:47:46] Enter password:
+[2025-03-19 22:47:46] Received: Enter password:
+[2025-03-19 22:47:48] Sent: bob
+[2025-03-19 22:47:48] Error: User or Pass not found.
+[2025-03-19 22:47:48] Received: Error: User or Pass not found.
+[2025-03-19 22:49:44] Sent: L
+[2025-03-19 22:49:44] Enter username:
+[2025-03-19 22:49:44] Received: Enter username:
+[2025-03-19 22:49:46] Sent: bob
+[2025-03-19 22:49:46] Enter password:
+[2025-03-19 22:49:46] Received: Enter password:
+[2025-03-19 22:49:48] Sent: bob
+[2025-03-19 22:49:48] Error: User or Pass not found.
+[2025-03-19 22:49:48] Received: Error: User or Pass not found.
+[2025-03-19 22:49:52] Sent: R
+[2025-03-19 22:49:52] Enter username:
+[2025-03-19 22:49:52] Received: Enter username:
+[2025-03-19 22:49:54] Sent: bob
+[2025-03-19 22:49:54] Enter password:
+[2025-03-19 22:49:54] Received: Enter password:
+[2025-03-19 22:49:56] Sent: bob
+[2025-03-19 22:49:56] Registration Successful
+[2025-03-19 22:49:56] Received: Registration Successful
+[2025-03-19 22:50:09] Sent: L
+[2025-03-19 22:50:09] Enter username:
+[2025-03-19 22:50:09] Received: Enter username:
+[2025-03-19 22:50:11] Sent: bob
+[2025-03-19 22:50:11] Enter password:
+[2025-03-19 22:50:11] Received: Enter password:
+[2025-03-19 22:50:14] Sent: bob
+[2025-03-19 22:50:14] Logged in as bob
+[2025-03-19 22:50:14] Received: Logged in as bob
+[2025-03-19 22:50:25] Sent: R
+[2025-03-19 22:50:29] Sent: doomge
+[2025-03-19 22:51:11] Sent: L
+[2025-03-19 22:51:11] Enter username:
+[2025-03-19 22:51:11] Received: Enter username:
+[2025-03-19 22:51:13] Sent: bob
+[2025-03-19 22:51:13] Enter password:
+[2025-03-19 22:51:13] Received: Enter password:
+[2025-03-19 22:51:15] Sent: bob
+[2025-03-19 22:51:15] Error: User or Pass not found.
+[2025-03-19 22:51:15] Received: Error: User or Pass not found.
+[2025-03-19 22:55:21] Sent: L
+[2025-03-19 22:55:21] Enter username:
+[2025-03-19 22:55:21] Received: Enter username:
+[2025-03-19 22:55:24] Sent: bob
+[2025-03-19 22:55:24] Enter password:
+[2025-03-19 22:55:24] Received: Enter password:
+[2025-03-19 22:55:26] Sent: bob
+[2025-03-19 22:55:26] Logged in as bob
+[2025-03-19 22:55:26] Received: Logged in as bob
+[2025-03-19 22:56:20] Sent: R
+[2025-03-19 22:56:20] Enter username:
+[2025-03-19 22:56:20] Received: Enter username:
+[2025-03-19 22:56:23] Sent: tim
+[2025-03-19 22:56:23] Enter password:
+[2025-03-19 22:56:23] Received: Enter password:
+[2025-03-19 22:56:26] Sent: tim
+[2025-03-19 22:56:26] Registration Successful
+[2025-03-19 22:56:26] Received: Registration Successful
+[2025-03-19 22:56:29] Sent: R
+[2025-03-19 22:56:29] Enter username:
+[2025-03-19 22:56:29] Received: Enter username:
+[2025-03-19 22:56:32] Sent: bob
+[2025-03-19 22:56:32] Enter password:
+[2025-03-19 22:56:32] Received: Enter password:
+[2025-03-19 22:56:35] Sent: bob
+[2025-03-19 22:56:35] Error: User already taken.
+[2025-03-19 22:56:35] Received: Error: User already taken.
+[2025-03-19 22:56:40] Sent: L
+[2025-03-19 22:56:40] Enter username:
+[2025-03-19 22:56:40] Received: Enter username:
+[2025-03-19 22:56:42] Sent: bob
+[2025-03-19 22:56:42] Enter password:
+[2025-03-19 22:56:42] Received: Enter password:
+[2025-03-19 22:56:45] Sent: bob
+[2025-03-19 22:56:45] Logged in as bob
+[2025-03-19 22:56:45] Received: Logged in as bob
+[2025-03-19 23:07:59] Sent: L
+[2025-03-19 23:07:59] Enter username:
+[2025-03-19 23:07:59] Received: Enter username:
+[2025-03-19 23:08:01] Sent: tim
+[2025-03-19 23:08:01] Enter password:
+[2025-03-19 23:08:01] Received: Enter password:
+[2025-03-19 23:08:04] Sent: tim
+[2025-03-19 23:08:04] Logged in as tim
+[2025-03-19 23:08:04] Received: Logged in as tim
+[2025-03-19 23:39:51] Sent: L
+[2025-03-19 23:39:51] Enter username:
+[2025-03-19 23:39:51] Received: Enter username:
+[2025-03-19 23:39:53] Sent: bob
+[2025-03-19 23:39:53] Enter password:
+[2025-03-19 23:39:53] Received: Enter password:
+[2025-03-19 23:39:58] Sent: tim
+[2025-03-19 23:39:58] Error: User or Pass not found.
+[2025-03-19 23:39:58] Received: Error: User or Pass not found.
+[2025-03-19 23:40:05] Sent: L
+[2025-03-19 23:40:05] Enter username:
+[2025-03-19 23:40:05] Received: Enter username:
+[2025-03-19 23:40:07] Sent: bob
+[2025-03-19 23:40:07] Enter password:
+[2025-03-19 23:40:07] Received: Enter password:
+[2025-03-19 23:40:10] Sent: bob
+[2025-03-19 23:40:10] Logged in as bob
+[2025-03-19 23:40:10] Received: Logged in as bob
