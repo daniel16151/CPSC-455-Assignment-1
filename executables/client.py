@@ -7,8 +7,7 @@ import queue
 from tkinter import filedialog
 import os
 
-SERVER_URI = "wss://192.168.68.68:7890"
-
+SERVER_URI = "wss://0cb9248g-443.usw3.devtunnels.ms/:443"
 message_queue = queue.Queue()
 send_queue = None
 asyncio_loop = None
@@ -120,6 +119,7 @@ async def websocket_client():
         async with websockets.connect(SERVER_URI, ssl=ssl_context) as websocket:
             websocket_ref = websocket
             message_queue.put("Connected to server.")
+            message_queue.put("Enter 'R' to register or 'L' to login: ")
             send_task = asyncio.create_task(send_message(websocket))
             receive_task = asyncio.create_task(receive_message(websocket))
             await asyncio.gather(send_task, receive_task)
@@ -136,7 +136,7 @@ def start_gui():
     display.pack(padx=10, pady=10)
     entry = tk.Entry(root, width=50)
     entry.pack(side='left', padx=(10,0), pady=(0,10))
-
+    entry.bind("<Return>", lambda event: click_send())
     def click_send():
         msg = entry.get().strip()
         if msg:
@@ -168,7 +168,7 @@ def start_gui():
 
     poll()
     return root
-
+    
 if __name__ == "__main__":
     websocket_client_thread = threading.Thread(target=start_websocket_client, daemon=True)
     websocket_client_thread.start()
