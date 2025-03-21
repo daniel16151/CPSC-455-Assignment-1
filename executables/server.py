@@ -157,6 +157,23 @@ async def messaging(websocket):
                     file_buffer = None
                     continue
 
+                data = json.loads(message)
+                if isinstance(data, dict) and "target" in data:
+                    target_user = data["target"]
+                    direct_message = data.get("message", "")
+                    sender = client_to_user.get(websocket, "Unknown")
+                    target_socket = None
+                    for client, username in client_to_user.items():
+                        if username == target_user:
+                            target_socket = client
+                            break
+                        if target_socket is None:
+                            await websocket.send(json.dumps({"Error: Targeted User is offline."}))
+                        else:
+                            await target_socket.send(json.dumps({"direct_message": f"{sender}: {direct_message}"}))
+                            await websocket.send(json.dumps({"info": f"Direct message sent to {target_user}"}))
+                            continue
+
                 sender = client_to_user.get(websocket, "Unknown")
                 broadcast_message = f"{sender}: {message}"
                 print(f"Received: {broadcast_message}")

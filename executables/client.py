@@ -6,12 +6,14 @@ import threading
 import queue
 from tkinter import filedialog
 import os
+import json
 
 SERVER_URI = "wss://0cb9248g-443.usw3.devtunnels.ms/:443"
 message_queue = queue.Queue()
 send_queue = None
 asyncio_loop = None
-websocket_ref = None  
+websocket_ref = None 
+current_target = None 
 
 import datetime
 
@@ -84,6 +86,13 @@ async def receive_message(websocket):
             response = await websocket.recv()
 
             if isinstance(response, str):  
+                data = json.loads(response)
+                if isinstance(data, dict) and "online_users" in data:
+                    message_queue.put({"online_users": data["online_users"]})
+                    continue
+                if isinstance(data, dict) and "direct_message" in data:
+                    message_queue.put(f"Receive: {display_message(data['direct_message'])}")
+                    continue
                 if response.startswith("FILE:"):
                     filename = response.split(":", 1)[1]
                     file_buffer = open(f"received_{filename}", "wb")
@@ -132,10 +141,31 @@ def start_websocket_client():
 def start_gui():
     root = tk.Tk()
     root.title("SecureTech Industries")
-    display = tk.Text(root, wrap='word', height=20, width=60)
+
+    left_list = tk.Frame(root)
+    left_list.pack(side = 'left', fill = 'y', padx = (10,5), pady = (10))
+    contacts = tk.Label(left_list, text = "Online Users")
+    contacts.pack()
+    users = tk.Listbox(left_list, height = (15), width = (20))
+    users.pack(fill = 'y', padx = (5), pady = (5))
+
+    def click_user(event):
+        global current_target
+        selection = event.widget.curselection()
+        if selection:
+            index = selection[0]
+            user = event.widget.get(index)
+            current_target = user
+            message_queue.put(f"Chatting with {user} now")
+    users.bind("<Double-Button-1>", click_user)
+    
+    chatbox = tk.Frame(root)
+    chatbox.pack(side = 'right', fill = 'both', expand = True, padx = (0,10), pady = 10)
+
+    display = tk.Text(chatbox, wrap='word', height=20, width=60)
     display.pack(padx=10, pady=10)
     entry = tk.Entry(root, width=50)
-    entry.pack(side='left', padx=(10,0), pady=(0,10))
+    entry.pack(side='left', padx=(20,0), pady=(0,20))
     entry.bind("<Return>", lambda event: click_send())
     def click_send():
         msg = entry.get().strip()
@@ -162,8 +192,13 @@ def start_gui():
     def poll():
         while not message_queue.empty():
             msg = message_queue.get()
-            display.insert(tk.END, msg + "\n")
-            display.see(tk.END)
+            if isinstance(msg, dict) and "online_users" in msg:
+                users.delete(0, tk.END)
+                for user in msg["online_users"]:
+                    users.insert(tk.END, user)
+            else:
+                display.insert(tk.END, str(msg) + "\n")
+                display.see(tk.END)
         root.after(100, poll)
 
     poll()
