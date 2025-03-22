@@ -1,0 +1,4 @@
+[2025-03-22 00:28:50] A client connected
+[2025-03-22 00:28:56] User logged in: bob
+[2025-03-22 00:29:02] Client disconnected unexpectedly.
+[2025-03-22 00:29:02] User logged out: bob

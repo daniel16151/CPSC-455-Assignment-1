@@ -1,0 +1,14 @@
+[2025-03-22 00:28:42] Client error: server rejected WebSocket connection: HTTP 502
+[2025-03-22 00:28:51] Connected to server.
+[2025-03-22 00:28:51] Enter 'R' to register or 'L' to login: 
+[2025-03-22 00:28:54] To everyone: L
+[2025-03-22 00:28:54] None: L
+[2025-03-22 00:28:54] Enter username:
+[2025-03-22 00:28:54] Enter username:
+[2025-03-22 00:28:55] To everyone: bob
+[2025-03-22 00:28:55] None: bob
+[2025-03-22 00:28:55] Enter password:
+[2025-03-22 00:28:55] Enter password:
+[2025-03-22 00:28:56] To everyone: bob
+[2025-03-22 00:28:56] None: bob
+[2025-03-22 00:28:56] Logged in as bob
