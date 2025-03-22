@@ -1,0 +1,10 @@
+[2025-03-22 00:20:50] A client connected
+[2025-03-22 00:20:54] A client connected
+[2025-03-22 00:21:04] User logged in: bob
+[2025-03-22 00:21:08] User logged in: tim
+[2025-03-22 00:21:14] Received: tim: 😁
+[2025-03-22 00:23:26] Client disconnected unexpectedly.
+[2025-03-22 00:23:26] User logged out: tim
+[2025-03-22 00:23:26] Error sending online users list: no close frame received or sent
+[2025-03-22 00:23:26] Client disconnected unexpectedly.
+[2025-03-22 00:23:26] User logged out: bob
