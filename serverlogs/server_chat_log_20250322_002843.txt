@@ -2,3 +2,38 @@
 [2025-03-22 00:28:56] User logged in: bob
 [2025-03-22 00:29:02] Client disconnected unexpectedly.
 [2025-03-22 00:29:02] User logged out: bob
+[2025-03-22 01:38:56] A client connected
+[2025-03-22 01:39:09] User logged in: bob
+[2025-03-22 01:39:23] Received: bob: 😁
+[2025-03-22 01:40:32] A client connected
+[2025-03-22 01:40:36] User logged in: tim
+[2025-03-22 01:45:12] User logged out: tim
+[2025-03-22 01:47:17] Client disconnected unexpectedly.
+[2025-03-22 01:47:17] User logged out: bob
+[2025-03-22 01:54:59] A client connected
+[2025-03-22 01:55:03] Client disconnected unexpectedly.
+[2025-03-22 01:57:38] A client connected
+[2025-03-22 01:58:06] User logged in: bob
+[2025-03-22 01:58:46] A client connected
+[2025-03-22 02:00:03] User registered: testing
+[2025-03-22 02:00:15] User logged in: testing
+[2025-03-22 02:01:23] A client connected
+[2025-03-22 02:01:46] User registered: anothertester
+[2025-03-22 02:01:58] User logged in: anothertester
+[2025-03-22 02:07:08] User logged out: bob
+[2025-03-22 02:13:09] A client connected
+[2025-03-22 02:13:13] User logged in: bob
+[2025-03-22 02:13:19] Received: bob: sda
+[2025-03-22 02:13:19] Received: bob: dsa
+[2025-03-22 02:13:19] Received: bob: dsa
+[2025-03-22 02:13:19] Received: bob: ads
+[2025-03-22 02:13:19] Received: bob: ads
+[2025-03-22 02:13:20] Received: bob: asd
+[2025-03-22 02:13:21] Client disconnected unexpectedly.
+[2025-03-22 02:13:21] User logged out: bob
+[2025-03-22 02:13:24] A client connected
+[2025-03-22 02:19:02] User logged in: bob
+[2025-03-22 02:24:16] Client disconnected unexpectedly.
+[2025-03-22 02:24:16] User logged out: testing
+[2025-03-22 02:24:42] Client disconnected unexpectedly.
+[2025-03-22 02:24:42] User logged out: anothertester
