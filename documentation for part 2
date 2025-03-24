@@ -9,9 +9,9 @@ Another aim is to update the way to connect, as localhost will not cut it.
 
 In addition to that, we chose to add in file sharing and a chat log system to see if that will function within our code, and it thankfully did. Although file sharing hasn't been ensured if it's fully completed or not, we learned that it works at the very least, which is what truly matters at the moment.
 
-Instructions:
-Install python and websockets on two systems.
-Once they are installed, run server.py on one system, and wait until "Websocket server started on ws://127.0.0.1:7890" has popped up. 
-Once that has popped up, run client.py to join the server on the first system.
-Run client.py on the second system and enter your user input on either client to communicate with the other.
-(For the URI, make sure to set [127.0.0.1] to the local IP of the host system. This can be found by entering ipconfig into cmd prompt in host system.)
+We looked into various methods to implement the login / register system and decided on using dictionaries to map the connection to a username and to track the state the client is in. State being whether they are logging in or registering. Our data storage is through a json file that stores the usernames plain and the passwords hashed. The server will read this json file when someone attempts to login, which will allows users to log out and relog whenever. Also introduced some requirements for passwords to ensure that users made a password that would not be solved too quickly. Also added some forbidden characters as a bandaid fix to prevent XSS attacks.
+We then properly added a targeting system that is available in the GUI, which allows users to direct message other users - which is only possible because of the user / login system being properly implemeted. This feature is great, as previously, it was only possible to message all clients at once when sending messages. 
+After implementing these changes, we added a way to target users for sending files, as the old system could only send messages. 
+We also added the new URI which allows us to connect through a portforward DNS, meaning they no longer need to use localhost to connect each time. 
+We then added brute force protection to logging in, added emoji support, and updated the logging for clients / server to ensure everything is properly timestamped and it creates a new one for each session. Introduced a file transfer state for transferring files to a specific user.
+We then added client.exe for ease of access for the user, as they would no longer need to host from terminal to pop the GUI. 

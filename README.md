@@ -1,7 +1,8 @@
 # CPSC-455-ASSIGNMENT-1
 Instructions:
 Install python and websockets on two systems.
-Once they are installed, run server.py on one system, and wait until "Websocket server started on ws://127.0.0.1:7890" has popped up. 
-Once that has popped up, run client.py to join the server on the first system.
-Run client.py on the second system and enter your user input on either client to communicate with the other.
-(For the URI, make sure to set [127.0.0.1] to the local IP of the host system. This can be found by entering ipconfig into cmd prompt in host system.)
+Once they are installed, run server.py on one system and check if it is hosting itself on port 443.
+Once that has popped up, run client.exe to run the GUI and connect to the server.
+Enter R or L to register or login to an account.
+Feel free to send messages, files, or emojis to the user that you specifically want to chat with after double-clicking their name on the Online_User list. 
+Input /quit if you want to log out, or click X on the top right to close the chat.

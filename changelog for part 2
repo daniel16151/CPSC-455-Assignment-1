@@ -32,3 +32,28 @@ day 3 of the assignment:
 -added in an import library from tkinter
     - filedialog
         - allows file sharing capabilities in tkinter
+
+-imported json, hashlib, os, and datetime to server.py
+    -json used to store user data
+        -added new def load_user and save_user to save data and load it actively
+    -hashlib used to hash password
+        -def hash_pass to encrypt the password with the encoding based on time
+    -datetime to timestamp logs
+-added client_state, client_to_user, client_temp
+    -these are used for the targeting system, register/login system, and notifs
+-added sanitization function and some sanitization on inputs
+-created a port forward from the server which as a dns attached to it, allong users to access it across the internet
+-created targeting system and direct message system on server / client
+    -adjusted gui to have list that can select users and read broadcast from server of online users
+        -added precautions to prevent user from selecting themself
+-adjusted log systems
+    -made server create a new one for each session and have it properly timestamped for when it began
+    -made client create logs determined by the person who logs in
+-adjusted file system to utilize json targeting, which allows targeted file sending
+-added emoji button with various emoji keys for now
+    -had ai help pick out emojis for the system
+-introduce maximum attempts and block time (based off datetime)
+-created .exe file called client.exe for ease of access
+
+
+
