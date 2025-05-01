@@ -1,3 +1,4 @@
 day 1:
-- implemented a brand new changelog and documentation for the capstone
+- implemented a brand new changelog and documentation for the capstone.
 - implemented databases that stores user information, messages, and logs.
+- started setting up firebase storage for file sharing, which will be useful later on within the project.
