@@ -1,1 +1,3 @@
-
+day 1:
+- implemented a brand new changelog and documentation for the capstone
+- implemented databases that stores user information, messages, and logs.
