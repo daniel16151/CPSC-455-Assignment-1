@@ -8,7 +8,7 @@ from tkinter import filedialog
 import os
 import json
 
-SERVER_URI = "wss://0cb9248g-443.usw3.devtunnels.ms/:443"
+SERVER_URI = "wss://lg09dxfj-443.usw3.devtunnels.ms/:443"
 message_queue = queue.Queue()
 send_queue = None
 asyncio_loop = None

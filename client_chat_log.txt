@@ -1,0 +1,1 @@
+[2025-05-03 22:26:21] Client error: https://global.rel.tunnels.api.visualstudio.com/auth/github?pb=https%3A%2F%2Flg09dxfj-443.usw3.devtunnels.ms%2Fauth%2Fpostback%2Fgithub%3Frd%3D%252F%253A443%26tunnel%3D1 isn't a valid URI: scheme isn't ws or wss

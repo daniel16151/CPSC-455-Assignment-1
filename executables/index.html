@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SecureTech Chat</title>
+  <style>
+    body   { font-family: sans-serif; margin: 1em; }
+    #users { float: left; width: 20%; border: 1px solid #ccc; padding: 0.5em; }
+    #chat  { float: right; width: 75%; }
+    #log   { height: 300px; overflow-y: scroll; border:1px solid #ccc; padding:0.5em; }
+  </style>
+</head>
+<body>
+  <h1>SecureTech Chat</h1>
+  <div id="users">
+    <h3>Online Users</h3>
+    <ul id="userList"></ul>
+  </div>
+  <div id="chat">
+    <div id="log"></div>
+    <input id="msgInput" placeholder="Type a message…" style="width:70%">
+    <button id="sendBtn">Send</button>
+    <button id="fileBtn">Send File</button>
+  </div>
+
+  <script src="chat.js"></script>
+</body>
+</html>
