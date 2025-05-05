@@ -1,0 +1,4 @@
+[2025-05-04 16:10:29] A client connected
+[2025-05-04 16:11:34] User logged in: bob
+[2025-05-04 16:12:31] User logged out: bob
+[2025-05-04 17:21:43] A client connected

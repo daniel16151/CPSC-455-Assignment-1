@@ -35,7 +35,6 @@ function handleFile(data) {
     log(`Preparing to receive file: ${incomingName}`);
   }
   else if (data.file_transfer === "end") {
-    // assemble blob and download
     const blob = new Blob(incomingFile);
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
@@ -94,7 +93,7 @@ function sendText(msg) {
     log(`To ${currentTarget}: ${msg}`);
   } else {
     ws.send(msg);
-    log(`To everyone: ${msg}`);
+    log(`To system: ${msg}`);
   }
 }
 
