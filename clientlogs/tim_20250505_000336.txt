@@ -1,0 +1,22 @@
+[2025-05-05 00:03:36] Logged in as tim
+[2025-05-05 00:03:39] Chatting with bob now
+[2025-05-05 00:03:41] Sent direct message to bob: hey
+[2025-05-05 00:03:41] To bob: hey
+[2025-05-05 00:03:49] bob: hello
+[2025-05-05 00:03:49] bob: hello
+[2025-05-05 00:03:54] bob: hello?
+[2025-05-05 00:03:54] bob: hello?
+[2025-05-05 00:03:59] bob: interesting
+[2025-05-05 00:03:59] bob: interesting
+[2025-05-05 00:04:02] Sent direct message to bob: hmm
+[2025-05-05 00:04:02] To bob: hmm
+[2025-05-05 00:04:20] bob: bam
+[2025-05-05 00:04:21] bob: bam
+[2025-05-05 00:04:22] bob: bam
+[2025-05-05 00:04:22] bob: bam
+[2025-05-05 00:04:24] bob: bammm
+[2025-05-05 00:04:24] bob: bammm
+[2025-05-05 00:04:30] Sent direct message to bob: 🎉
+[2025-05-05 00:04:30] To bob: 🎉
+[2025-05-05 00:43:27] bob: 😦
+[2025-05-05 00:43:27] bob: 😦

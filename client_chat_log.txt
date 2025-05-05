@@ -1,1 +1,14 @@
 [2025-05-03 22:26:21] Client error: https://global.rel.tunnels.api.visualstudio.com/auth/github?pb=https%3A%2F%2Flg09dxfj-443.usw3.devtunnels.ms%2Fauth%2Fpostback%2Fgithub%3Frd%3D%252F%253A443%26tunnel%3D1 isn't a valid URI: scheme isn't ws or wss
+[2025-05-05 00:03:31] Connected to server.
+[2025-05-05 00:03:31] Enter 'R' to register or 'L' to login: 
+[2025-05-05 00:03:33] To everyone: L
+[2025-05-05 00:03:33] Enter username:
+[2025-05-05 00:03:33] None: L
+[2025-05-05 00:03:33] Enter username:
+[2025-05-05 00:03:35] To everyone: tim
+[2025-05-05 00:03:35] None: tim
+[2025-05-05 00:03:35] Enter password:
+[2025-05-05 00:03:35] Enter password:
+[2025-05-05 00:03:35] To everyone: tim
+[2025-05-05 00:03:35] Logged in as tim
+[2025-05-05 00:03:36] None: tim

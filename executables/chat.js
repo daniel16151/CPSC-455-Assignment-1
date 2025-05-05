@@ -153,5 +153,41 @@ document.addEventListener("DOMContentLoaded", () => {
       if (e.key === "Enter") {
         document.getElementById("sendBtn").click();
       }
-    });
-});
+      const emojis = [
+        "😀", "😃", "😄", "😁", "😆", "🤣", "😊", "😇",
+        "😉", "😍", "🤔", "🤗", "🙄", "😏", "😣", "😖",
+        "😞", "😡", "❤️", "💔", "🔥", "🎉", "👍", "👎",
+        "🚀", "✨", "☕", "🍔", "🍕", "🍎", "⚽"
+      ];
+    
+      const picker = document.getElementById("emojiPicker");
+      const btn    = document.getElementById("emojiBtn");
+      const input  = document.getElementById("msgInput");
+    
+      if (!picker.dataset.populated) {
+        emojis.forEach(e => {
+          const span = document.createElement("span");
+          span.textContent = e;
+          span.addEventListener("click", () => {
+            const input = document.getElementById("msgInput");
+            const start = input.selectionStart, end = input.selectionEnd;
+            input.value = input.value.slice(0,start) + e + input.value.slice(end);
+            input.selectionStart = input.selectionEnd = start + e.length;
+            input.focus();
+            picker.style.display = "none";
+          });
+          picker.append(span);
+        });
+        picker.dataset.populated = "true";  // mark it done
+      }
+    
+      btn.addEventListener("click", () => {
+        picker.style.display = (picker.style.display === "block") ? "none" : "block";
+      });
+    
+      document.addEventListener("click", e => {
+        if (!picker.contains(e.target) && e.target !== btn) {
+          picker.style.display = "none";
+        }
+      });
+    });});
