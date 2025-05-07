@@ -2,3 +2,8 @@ Before we start the documentation, once again we have to say that we got help/as
 
 As we start our capstone, we started browsing through multiple services first, alongside the fact that we set up the basics from there, ranging from free cloud storage
 to making MySQL databases to get us started.
+
+Afterwards, we started converting our code from being a separate chat application to being fully function as a webpage, which was successful, but with adjustments
+that were occurring, all that changed are how the code adjustments are going to work now, with different files being the main files to focus on now, rather than
+client.py. Even though server.py can still be adjusted, the client files are now required to be adjusted via index.html and chat.js. These are meant to replace the
+server.py completely, mainly because the chat application has been converted into a website rather than what it used to be. 
