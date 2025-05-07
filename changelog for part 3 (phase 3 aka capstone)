@@ -3,3 +3,8 @@ day 1:
 - implemented a brand new changelog and documentation for the capstone.
 - implemented databases that stores user information, messages, and logs.
 - started setting up firebase storage for file sharing, which will be useful later on within the project.
+
+day 2:
+- converted the chat application to an actual website with the subdomain aquired. 
+- instead of client.py, index.html and chat.js are the main files that are needed to be adjusted now
+- server.py remains the same, and adjustments are still required for that python file.
