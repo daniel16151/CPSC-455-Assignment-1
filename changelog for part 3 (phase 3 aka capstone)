@@ -8,3 +8,8 @@ day 2:
 - converted the chat application to an actual website with the subdomain aquired. 
 - instead of client.py, index.html and chat.js are the main files that are needed to be adjusted now
 - server.py remains the same, and adjustments are still required for that python file.
+
+day 3:
+- asked AI for help in terms of how I can implement a heartbeat/ping mechanism, hopefully completing task 2 or at least almost fully completed
+- branched off of the main code just to be cautious
+- made 2 pull requests, awaiting for other group member to confirm if that it works or not.
