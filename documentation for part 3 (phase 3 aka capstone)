@@ -7,3 +7,6 @@ Afterwards, we started converting our code from being a separate chat applicatio
 that were occurring, all that changed are how the code adjustments are going to work now, with different files being the main files to focus on now, rather than
 client.py. Even though server.py can still be adjusted, the client files are now required to be adjusted via index.html and chat.js. These are meant to replace the
 server.py completely, mainly because the chat application has been converted into a website rather than what it used to be. 
+
+Once that was done, we got to work immediately in terms of the other tasks that needed to be done, such as heartbeat mechanisms. Since we weren't really sure yet
+in terms of testing, we chose to branch off of the main branch and have 2 pull requests to see if it looks good or not. We'll just see how that goes.
