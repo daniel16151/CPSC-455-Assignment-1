@@ -50,6 +50,13 @@ let username = null;
 function start() {
   ws = new WebSocket(SERVER_URI);
 
+  setInterval(() => {
+  if (ws.readyState === WebSocket.OPEN) {
+    ws.send(JSON.stringify({ type: "ping" }));
+  }
+  }, 
+  30000);
+
   ws.onopen = () => {
     log("Connected to server.");
     log("Enter 'R' to register or 'L' to login:");
@@ -59,6 +66,9 @@ function start() {
     let data;
     try { data = JSON.parse(evt.data); }
     catch { log(evt.data); return; }
+    if (data.type === "ping") {
+    ws.send(JSON.stringify({ type: "pong" }));
+    }
 
     if (data.online_users) {
       updateUsers(data.online_users);
