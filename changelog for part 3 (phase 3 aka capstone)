@@ -17,5 +17,5 @@ day 3:
 day 4:
 - implemented online/offline presence and was improvised even more with AI in terms of how to make it more smoother
 - branched off once again just to be safe
-- merged the pull request to form into one branch, and merged again to main after knowing that the heartbeat mechanism works according to elvis, and made another one 
-  - and that other one happens to be the online/offline presence implementation
+- merged the pull request to form into one branch, and merged again to main after knowing that the heartbeat mechanism works according to the other group member
+- made another pull request and branch, alongside the fact that it happens to be the online/offline presence implementation
