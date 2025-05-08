@@ -51,12 +51,17 @@ def sanitize(message: str) -> str:
 
 async def broadcast_online_users():
     online_list = list(client_to_user.values())
-    message = json.dumps({"online_users": online_list})
+    #message = json.dumps({"online_users": online_list}) <- uncomment this if you can find a way to make both function
+    presence_payload = {
+        "type": "presence",
+        "users": {user: "online" for user in online_list}
+    }
     for client in connected_clients:
         try:
-            await client.send(message)
+            await client.send(json.dumps(presence_payload)) #await client.send(message) <- same here
         except Exception as e:
-            log_message(f"Error sending online users list: {e}")
+            log_message(f"Error sending presence list: {e}")
+
 
 async def heartbeat():
     while True:
@@ -216,6 +221,25 @@ async def messaging(websocket):
                         else:
                             await target_socket.send(json.dumps({"direct_message": f"{sender}: {chat_message}"}))
                         continue  
+
+                    if "type" in data:
+                        msg_type = data["type"]
+                    if msg_type == "typing" or msg_type == "stop_typing":
+                        target_username = data.get("target")
+                        sender = client_to_user.get(websocket, "Unknown")
+
+                        target_socket = None
+                        for client, username in client_to_user.items():
+                            if username == target_username:
+                                target_socket = client
+                                break
+
+                        if target_socket:
+                            await target_socket.send(json.dumps({
+                                "type": msg_type,
+                                "from": sender
+                            }))
+                        continue
                     
                     if "file_transfer" in data:
                         action = data["file_transfer"]
