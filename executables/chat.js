@@ -64,8 +64,20 @@ function start() {
 
   ws.onmessage = async evt => {
     let data;
-    try { data = JSON.parse(evt.data); }
-    catch { log(evt.data); return; }
+    try { data = JSON.parse(evt.data); } catch { log(evt.data); return; }
+    if (data.type === "typing") {
+      log(`${data.from} is typing...`);
+    } else if (data.type === "stop_typing") {
+      log(`${data.from} stopped typing.`);
+    }
+    if (data.type === "presence") {
+    const ul = document.getElementById("userList");
+    ul.innerHTML = "";
+    for (const [user, status] of Object.entries(data.users)) {
+    const li = document.createElement("li");
+    li.textContent = `${user} (${status})`;
+    ul.append(li);
+    } }
     if (data.type === "ping") {
     ws.send(JSON.stringify({ type: "pong" }));
     }
@@ -201,3 +213,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     });});
+    let typingTimeout;
+
+  document.getElementById("msgInput").addEventListener("input", () => {
+    if (!currentTarget || !ws || ws.readyState !== WebSocket.OPEN) return;
+    ws.send(JSON.stringify({ type: "typing", target: currentTarget }));
+
+    clearTimeout(typingTimeout);
+    typingTimeout = setTimeout(() => {
+      ws.send(JSON.stringify({ type: "stop_typing", target: currentTarget }));
+    }, 2000); 
+  });
