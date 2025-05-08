@@ -57,6 +57,30 @@ async def broadcast_online_users():
             await client.send(message)
         except Exception as e:
             log_message(f"Error sending online users list: {e}")
+
+async def heartbeat():
+    while True:
+        await asyncio.sleep(30) 
+        stale_clients = set()
+        for client in connected_clients.copy():
+            try:
+                pong_waiter = await client.ping()
+                await asyncio.wait_for(pong_waiter, timeout=10)
+            except:
+                stale_clients.add(client)
+
+        for client in stale_clients:
+            print("Client unresponsive, disconnecting...")
+            log_message("Client unresponsive, disconnecting...")
+            connected_clients.discard(client)
+            username = client_to_user.pop(client, None)
+            if username:
+                log_message(f"User logged out due to heartbeat failure: {username}")
+            client_state.pop(client, None)
+            client_temp.pop(client, None)
+            await broadcast_online_users()
+            await client.close()
+
             
 async def messaging(websocket): 
     print("A client connected")
@@ -250,6 +274,7 @@ async def main():
     ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
     ssl_context.load_cert_chain(certfile="./executables/certificate.pem", keyfile="./executables/privateKey.pem")
     server = await websockets.serve(messaging, "0.0.0.0", PORT, ssl=ssl_context)
+    asyncio.create_task(heartbeat())
     print(f"WebSocket server started on wss://0.0.0.0:{PORT}")
     await server.wait_closed()
 
