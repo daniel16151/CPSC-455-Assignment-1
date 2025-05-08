@@ -10,3 +10,7 @@ server.py completely, mainly because the chat application has been converted int
 
 Once that was done, we got to work immediately in terms of the other tasks that needed to be done, such as heartbeat mechanisms. Since we weren't really sure yet
 in terms of testing, we chose to branch off of the main branch and have 2 pull requests to see if it looks good or not. We'll just see how that goes.
+
+Knowing that the heartbeat mechanism functions, but could use some work soon, we went ahead and moved onto implementing the online/offline presence management, and
+there were no merging errors when making a pull request and a branch for it. Also knowing that the heartbeat mechanism works, we went ahead and merged it to the main
+branch. Now we're just gonna have to wait and see if the online/offline presence management fully functions or not.
