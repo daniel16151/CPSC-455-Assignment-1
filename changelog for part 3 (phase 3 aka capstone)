@@ -13,3 +13,9 @@ day 3:
 - asked AI for help in terms of how I can implement a heartbeat/ping mechanism, hopefully completing task 2 or at least almost fully completed
 - branched off of the main code just to be cautious
 - made 2 pull requests, awaiting for other group member to confirm if that it works or not.
+
+day 4:
+- implemented online/offline presence and was improvised even more with AI in terms of how to make it more smoother
+- branched off once again just to be safe
+- merged the pull request to form into one branch, and merged again to main after knowing that the heartbeat mechanism works according to elvis, and made another one 
+  - and that other one happens to be the online/offline presence implementation
