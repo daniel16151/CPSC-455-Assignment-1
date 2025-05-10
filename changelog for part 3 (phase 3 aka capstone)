@@ -3,6 +3,7 @@ day 1:
 - implemented a brand new changelog and documentation for the capstone.
 - implemented databases that stores user information, messages, and logs.
 - started setting up firebase storage for file sharing, which will be useful later on within the project.
+- all of these were implemented by Daniel so far. nothing from Elvis yet.
 
 day 2:
 - converted the chat application to an actual website with the subdomain aquired. 
