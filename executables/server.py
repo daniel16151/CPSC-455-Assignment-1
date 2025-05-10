@@ -6,7 +6,7 @@ import hashlib
 import os
 import datetime
 
-PORT = 443
+PORT = int(os.environ.get("PORT", 443))
 connected_clients = set()
 client_to_user = {}
 file_transfer_target = {} 
@@ -271,9 +271,7 @@ async def messaging(websocket):
         await websocket.close()
 
 async def main():
-    ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-    ssl_context.load_cert_chain(certfile="./executables/certificate.pem", keyfile="./executables/privateKey.pem")
-    server = await websockets.serve(messaging, "0.0.0.0", PORT, ssl=ssl_context)
+    server = await websockets.serve(messaging, "0.0.0.0", PORT, ping_interval=30, ping_timeout=10)
     asyncio.create_task(heartbeat())
     print(f"WebSocket server started on wss://0.0.0.0:{PORT}")
     await server.wait_closed()
