@@ -24,3 +24,27 @@ day 4:
 day 5:
 - made the project compatible with railway
 - connection with railway was successful
+
+day 6:
+- changed heartbeat mechanism to websocket's built in ping system through .serve
+- changed logic for ports on server.py to ensure railway runs smoothly
+- added files to infinityfree to host frontend
+- renamed chat.js to message.js (infinityfree blocks anything named chat)
+- changed how files are sent and made them only download if you click on them
+- added firebase to store file uploads and scan them for uploads
+- added checks for files to prevent malicious / large files from being sent
+- added rate limiting to messages on the server
+- added database logic for server.py to Postgres on Railway
+- change logging logic to SQL for Postgres on Railway
+- added table creation to server.py to generate them if they don't exist
+- added reconnect logic to message.js
+- adjusted server.py to properly allow them to relog once reconnection has taken place
+- added CSP to prevent XSS attacks
+- added denial of x-frame to prevent clickjacking
+- ssl added through infinityfree
+- made firebase.js to contain code for script to ensure CSP could run without problems
+- added encryption to messages between users when logging their messages
+    -done through cryptography library Fernet
+    
+day7:
+- added firebase storage link to CSP to enable access to file upload

@@ -14,3 +14,13 @@ in terms of testing, we chose to branch off of the main branch and have 2 pull r
 Knowing that the heartbeat mechanism functions, but could use some work soon, we went ahead and moved onto implementing the online/offline presence management, and
 there were no merging errors when making a pull request and a branch for it. Also knowing that the heartbeat mechanism works, we went ahead and merged it to the main
 branch. Now we're just gonna have to wait and see if the online/offline presence management fully functions or not.
+
+Online/offline presence management is kind of there, in that the usernames only appear on the userlist if they're online - but it does not inform users when someone is typing.
+Going deeper into phase 3, we realized we needed to make a lot of adjustments. Since our project was created using gui / tkinter originally, we needed to adjust it to a frontend for 
+a website. Which as was stated earlier, converted into index.html and message.js now. The reason behind the rename is that infinityfree.com, our host for the frontend, dislikes
+files that are named with chat. We also introduced a heartbeat system that is built into websockets through websocket.serve and converted our server.py to work with railway.com. 
+This allowed us to have a proper websocket host with near 24/7 uptime so that our infinityfree page could keep running. We also introduced firebase.js to our webpage to store files 
+securely while also scanning for any potential malware. It was originally in our index.html file, but we wanted to add CSP, which needed the script to be separated from the html page. 
+After adjusting our file upload / send logic with firebase in mind, we added reconnection logic (although you do have to relogin each time it occurs). We then utilized a cryptography library
+to generate a key from Fernet, to encrypt the messages on the server side. We also had to update logging to access the SQL database through Postgres on Railway, which allows user data to be stored
+properly, without any concerns of destruction when pushing new updates to server.py. 
