@@ -2,6 +2,95 @@ const SERVER_URI = "wss://web-production-860cc.up.railway.app/ws";
 let ws, currentTarget = null;
 let reconnectInterval = 1000; 
 const maxInterval       = 30000;
+let typingTimeout;
+const typingIndicator = document.getElementById("typingIndicator");
+
+function updateTypingStatus(isTyping, target) {
+  if (isTyping) {
+    typingIndicator.textContent = `${target} is typing...`;
+  } else {
+    typingIndicator.textContent = '';
+  }
+}
+
+document.getElementById("msgInput").addEventListener("input", () => {
+  if (currentTarget) {
+    ws.send(JSON.stringify({ type: 'typing', target: currentTarget }));
+    clearTimeout(typingTimeout);
+    typingTimeout = setTimeout(() => {
+      ws.send(JSON.stringify({ type: 'stop_typing', target: currentTarget }));
+    }, 1000); 
+  }
+});
+
+ws.onmessage = async evt => {
+  if (evt.data instanceof ArrayBuffer) {
+    incomingFile.push(evt.data);
+    return;
+  }
+  if (evt.data instanceof Blob) {
+    const buf = await evt.data.arrayBuffer();
+    incomingFile.push(buf);
+    return;
+  }
+
+  const text = evt.data;
+  if (text.startsWith("Logged in as ")) {
+    username = text.replace("Logged in as ", "").trim();
+    log(text);
+    return;
+  }
+
+  let data;
+  try {
+    data = JSON.parse(text);
+  } catch {
+    log(text);
+    return;
+  }
+
+  if (data.type === "typing" && data.target === currentTarget) {
+    updateTypingStatus(true, data.target);
+    return;
+  }
+
+  if (data.type === "stop_typing" && data.target === currentTarget) {
+    updateTypingStatus(false, data.target);
+    return;
+  }
+
+  if (data.online_users) {
+    updateUsers(data.online_users);
+    return;
+  }
+
+  if (data.direct_message) {
+    const dm = data.direct_message; 
+    const brace = dm.indexOf("{");
+    if (brace !== -1) {
+      const prefix   = dm.substring(0, brace);
+      const jsonPart = dm.substring(brace);
+
+      try {
+        const inner = JSON.parse(jsonPart);
+
+        if (inner.type === "file_url" && inner.url && inner.filename) {
+          renderFileLink(inner.url, inner.filename, prefix);
+          return;
+        }
+      } catch (e) {
+      }
+    }
+    log(dm);
+    return;
+  }
+
+  if (data.file_transfer) {
+    handleFile(data);
+    return;
+  }
+  log(text);
+};
 
 function sanitizeText(text) {
   return text.replace(/[<>]/g, "");
