@@ -51,6 +51,21 @@
     <button id="fileBtn">Send File</button>
     <div id="emojiPicker"></div>
   </div>
-  <script src="chat.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+    import { getStorage }      from "https://www.gstatic.com/firebasejs/9.22.2/firebase-storage.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyB6kuGJdqzZvorG6zb5slCASpSUMnoX0Zg",
+      authDomain: "cpsc455techcloud.firebaseapp.com",
+      projectId: "cpsc455techcloud",
+      storageBucket: "cpsc455techcloud.firebasestorage.app",
+      messagingSenderId: "733104077877",
+      appId: "1:733104077877:web:d34e457e57e7eb10bb057c",
+      measurementId: "G-QLRT3M6T0X"
+      };
+    const app     = initializeApp(firebaseConfig);
+    window.storage = getStorage(app);
+  </script>
+  <script src="message.js"></script>
 </body>
 </html>

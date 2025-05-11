@@ -1,5 +1,4 @@
-
-const SERVER_URI = "wss://lg09dxfj-443.usw3.devtunnels.ms/:443";
+const SERVER_URI = "wss://web-production-860cc.up.railway.app/ws";
 let ws, currentTarget = null;
 
 function log(text) {
@@ -27,66 +26,124 @@ function updateUsers(list) { // handle user list
   });
 }
 
-let incomingFile = null, incomingName = ""; // handle files
 function handleFile(data) {
+  console.log("handleFile called — using manual download link");
+  const logDiv = document.getElementById("log");
+
   if (data.file_transfer === "start") {
     incomingName = data.filename;
     incomingFile = [];
-    log(`Preparing to receive file: ${incomingName}`);
+    const msg = document.createElement("div");
+    msg.textContent = `Preparing to receive file: ${incomingName}`;
+    logDiv.append(msg);
+    msg.scrollIntoView();
   }
   else if (data.file_transfer === "end") {
     const blob = new Blob(incomingFile);
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = `received_${incomingName}`;
-    a.click();
-    URL.revokeObjectURL(a.href);
-    log(`File received: received_${incomingName}`);
-    incomingFile = null;
+    const url  = URL.createObjectURL(blob);
+
+    const container = document.createElement("div");
+    container.textContent = `File received: `;
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = incomingName;
+    link.textContent = `Download ${incomingName}`;
+    link.style.marginLeft = "8px";
+
+    link.addEventListener("click", () => {
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+
+    container.append(link);
+    logDiv.append(container);
+    container.scrollIntoView();
+
+    incomingFile = [];
+    incomingName = "";
   }
 }
 
+function renderFileLink(url, filename, prefix = "") {
+  const container = document.createElement("div");
+  container.textContent = prefix;
+
+  const link = document.createElement("a");
+  link.href        = url;
+  link.textContent = filename;
+  link.target      = "_blank";
+  link.style.marginLeft = "8px";
+
+  container.append(link);
+  document.getElementById("log").append(container);
+  container.scrollIntoView();
+}
 let username = null;
 function start() {
   ws = new WebSocket(SERVER_URI);
-
-  setInterval(() => {
-  if (ws.readyState === WebSocket.OPEN) {
-    ws.send(JSON.stringify({ type: "ping" }));
-  }
-  }, 
-  30000);
+  ws.binaryType = "arraybuffer";
 
   ws.onopen = () => {
     log("Connected to server.");
     log("Enter 'R' to register or 'L' to login:");
   };
 
-  ws.onmessage = async evt => {
-    let data;
-    try { data = JSON.parse(evt.data); }
-    catch { log(evt.data); return; }
-    if (data.type === "ping") {
-    ws.send(JSON.stringify({ type: "pong" }));
-    }
+ws.onmessage = async evt => {
+  if (evt.data instanceof ArrayBuffer) {
+    incomingFile.push(evt.data);
+    return;
+  }
+  if (evt.data instanceof Blob) {
+    const buf = await evt.data.arrayBuffer();
+    incomingFile.push(buf);
+    return;
+  }
+  const text = evt.data;
+  let data;
+  try {
+    data = JSON.parse(text);
+  } catch {
+    log(text);
+    return;
+  }
+  if (data.type === "file_url" && data.url && data.filename) {
+    renderFileLink(data.url, data.filename);
+    return;
+  }
+  if (data.online_users) {
+    updateUsers(data.online_users);
+    return;
+  }
+  if (data.direct_message) {
+    const dm = data.direct_message; 
+    const brace = dm.indexOf("{");
+    if (brace !== -1) {
+      const prefix   = dm.substring(0, brace); 
+      const jsonPart = dm.substring(brace);
+      try {
+        const inner = JSON.parse(jsonPart);
 
-    if (data.online_users) {
-      updateUsers(data.online_users);
+        if (inner.type === "file_url" && inner.url && inner.filename) {
+          renderFileLink(inner.url, inner.filename, prefix);
+          return;
+        }
+      } catch (e) {
+      }
     }
-    else if (data.direct_message) {
-      log(data.direct_message);
-    }
-    else if (data.file_transfer) {
-      handleFile(data);
-    }
-    else if (typeof data === "string" && data.startsWith("Logged in as ")) {
-      username = data.replace("Logged in as ", "").trim();
-      log(data);
-    }
-    else {
-      log(evt.data);
-    }
-  };
+    log(dm);
+    return;
+  }
+  if (data.file_transfer) {
+    handleFile(data);
+    return;
+  }
+  if (typeof data === "string" && data.startsWith("Logged in as ")) {
+    username = data.replace("Logged in as ", "").trim();
+    log(data);
+    return;
+  }
+  log(text);
+};
 
   ws.onclose = () => { log("Connection closed."); };
   ws.onerror = e => { log("WebSocket error: " + e.message); };
@@ -107,6 +164,19 @@ function sendText(msg) {
   }
 }
 
+import {
+  ref as storageRef,
+  uploadBytes,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/9.22.2/firebase-storage.js";
+
+async function uploadFileToFirebase(file) {
+  const path = `uploads/${Date.now()}_${file.name}`;
+  const ref  = storageRef(window.storage, path);
+
+  await uploadBytes(ref, file);
+  return getDownloadURL(ref);
+}
 async function sendFile(file) {
   if (!ws || ws.readyState !== WebSocket.OPEN) {
     log("WebSocket not connected!");
@@ -123,7 +193,6 @@ async function sendFile(file) {
     target: currentTarget,
     filename: file.name
   }));
-
   const chunkSize = 4096;
   const reader = file.stream().getReader();
   while (true) {
@@ -139,6 +208,28 @@ async function sendFile(file) {
   log(`File '${file.name}' sent successfully to ${currentTarget}.`);
 }
 
+async function validateFile(file) {
+  const maxSize    = 20 * 1024 * 1024;
+  const allowedMIMEs = [
+    "image/png", "image/jpeg",
+    "application/pdf", "text/plain"
+  ];
+
+  if (file.size > maxSize) throw new Error("File too big (max 20 MB).");
+
+  if (!allowedMIMEs.includes(file.type)) {
+    throw new Error(`Disallowed file type: ${file.type}`);
+  }
+
+  if (file.type === "text/plain") {
+    const txt = await file.text();
+    if (/<script[\s>]/i.test(txt)) {
+      throw new Error("Text file contains forbidden <script> tags.");
+    }
+  }
+
+  return true;
+}
 document.addEventListener("DOMContentLoaded", () => {
   start();
 
@@ -152,11 +243,35 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   document.getElementById("fileBtn").onclick = () => {
-    const input = document.createElement("input");
-    input.type = "file";
-    input.onchange = e => sendFile(e.target.files[0]);
-    input.click();
+  const chooser = document.createElement("input");
+  chooser.type = "file";
+
+  chooser.onchange = async e => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    try {
+      await validateFile(file);
+      const url = await uploadFileToFirebase(file);
+      const filePayload = {
+        type:     "file_url",
+        url:      url,
+        filename: file.name
+      };
+      const envelope = {
+        target:  currentTarget,
+        message: JSON.stringify(filePayload)
+      };
+      ws.send(JSON.stringify(envelope));
+      renderFileLink(url, file.name, `To ${currentTarget}: `);
+    }
+    catch (err) {
+      alert("Upload blocked: " + err.message);
+    }
   };
+
+  chooser.click();
+};
 
   document.getElementById("msgInput")
     .addEventListener("keypress", e => {
