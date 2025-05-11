@@ -1,5 +1,11 @@
 const SERVER_URI = "wss://web-production-860cc.up.railway.app/ws";
 let ws, currentTarget = null;
+let reconnectInterval = 1000; 
+const maxInterval       = 30000;
+
+function sanitizeText(text) {
+  return text.replace(/[<>]/g, "");
+}
 
 function log(text) {
   const entry = document.createElement("div");
@@ -8,21 +14,17 @@ function log(text) {
   entry.scrollIntoView();
 }
 
-function updateUsers(list) { // handle user list
+function updateUsers(list) {
   const ul = document.getElementById("userList");
-  ul.innerHTML = "";
+  ul.innerHTML = ""; 
   list.forEach(user => {
     const li = document.createElement("li");
     li.textContent = user;
     li.addEventListener("dblclick", () => {
-      if (user === username) {
-        log("You cannot select yourself.");
-      } else {
-        currentTarget = user;
-        log(`Chatting with ${user}`);
-      }
+      currentTarget = user;
+      log(`Chatting with ${user}`);
     });
-    ul.append(li);
+    ul.appendChild(li);
   });
 }
 
@@ -79,13 +81,13 @@ function renderFileLink(url, filename, prefix = "") {
   container.scrollIntoView();
 }
 let username = null;
-function start() {
+function connect() {
   ws = new WebSocket(SERVER_URI);
   ws.binaryType = "arraybuffer";
 
   ws.onopen = () => {
     log("Connected to server.");
-    log("Enter 'R' to register or 'L' to login:");
+    reconnectInterval = 1000;
   };
 
 ws.onmessage = async evt => {
@@ -98,7 +100,13 @@ ws.onmessage = async evt => {
     incomingFile.push(buf);
     return;
   }
+
   const text = evt.data;
+  if (text.startsWith("Logged in as ")) {
+        username = text.replace("Logged in as ", "").trim();
+        log(text);
+        return;
+    }
   let data;
   try {
     data = JSON.parse(text);
@@ -106,20 +114,24 @@ ws.onmessage = async evt => {
     log(text);
     return;
   }
+
   if (data.type === "file_url" && data.url && data.filename) {
     renderFileLink(data.url, data.filename);
     return;
   }
+
   if (data.online_users) {
     updateUsers(data.online_users);
     return;
   }
+
   if (data.direct_message) {
     const dm = data.direct_message; 
     const brace = dm.indexOf("{");
     if (brace !== -1) {
-      const prefix   = dm.substring(0, brace); 
+      const prefix   = dm.substring(0, brace);
       const jsonPart = dm.substring(brace);
+
       try {
         const inner = JSON.parse(jsonPart);
 
@@ -145,22 +157,35 @@ ws.onmessage = async evt => {
   log(text);
 };
 
-  ws.onclose = () => { log("Connection closed."); };
+  ws.onclose = e => {
+    username = null;
+    currentTarget = null;
+    log(`Connection closed. Reconnecting in ${reconnectInterval/1000}s…`);
+    setTimeout(connect, reconnectInterval);
+    reconnectInterval = Math.min(reconnectInterval * 2, maxInterval);
+    
+  };
   ws.onerror = e => { log("WebSocket error: " + e.message); };
 }
 
 function sendText(msg) {
   if (!ws || ws.readyState !== WebSocket.OPEN) return;
-  if (msg.toLowerCase() === "/quit") {
-    ws.close();
+
+  const safe = sanitizeText(msg);
+  if (safe === "") return;
+
+  if (!username) {
+    ws.send(safe);
+    log(safe);
     return;
   }
+
   if (currentTarget) {
-    ws.send(JSON.stringify({ target: currentTarget, message: msg }));
-    log(`To ${currentTarget}: ${msg}`);
+    const payload = { target: currentTarget, message: safe };
+    ws.send(JSON.stringify(payload));
+    log(`To ${currentTarget}: ${safe}`);
   } else {
-    ws.send(msg);
-    log(`To system: ${msg}`);
+    log("No target selected.");
   }
 }
 
@@ -230,9 +255,8 @@ async function validateFile(file) {
 
   return true;
 }
-document.addEventListener("DOMContentLoaded", () => {
-  start();
-
+    document.addEventListener("DOMContentLoaded", () => {
+        connect();
   document.getElementById("sendBtn").onclick = () => {
     const inp = document.getElementById("msgInput");
     const txt = inp.value.trim();
@@ -272,7 +296,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   chooser.click();
 };
-
   document.getElementById("msgInput")
     .addEventListener("keypress", e => {
       if (e.key === "Enter") {

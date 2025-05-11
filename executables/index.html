@@ -37,6 +37,19 @@
     }
   </style>
 </head>
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src  'self' https://www.gstatic.com;
+        connect-src 'self' wss://web-production-860cc.up.railway.app/ws
+                            https://identitytoolkit.googleapis.com 
+                            https://www.googleapis.com
+                            https://securetoken.googleapis.com;
+        style-src   'self' 'unsafe-inline';
+        img-src     'self' data: https:;
+        font-src    'self';
+        base-uri    'self';
+        form-action 'self';
+    ">
 <body>
   <h1>SecureTech Chat</h1>
   <div id="users">
@@ -49,23 +62,10 @@
     <button id="emojiBtn">😊</button>
     <button id="sendBtn">Send</button>
     <button id="fileBtn">Send File</button>
+      <input type="file" id="fileInput" style="display:none" />
     <div id="emojiPicker"></div>
   </div>
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-    import { getStorage }      from "https://www.gstatic.com/firebasejs/9.22.2/firebase-storage.js";
-    const firebaseConfig = {
-      apiKey: "AIzaSyB6kuGJdqzZvorG6zb5slCASpSUMnoX0Zg",
-      authDomain: "cpsc455techcloud.firebaseapp.com",
-      projectId: "cpsc455techcloud",
-      storageBucket: "cpsc455techcloud.firebasestorage.app",
-      messagingSenderId: "733104077877",
-      appId: "1:733104077877:web:d34e457e57e7eb10bb057c",
-      measurementId: "G-QLRT3M6T0X"
-      };
-    const app     = initializeApp(firebaseConfig);
-    window.storage = getStorage(app);
-  </script>
-  <script src="message.js"></script>
+  <script type="module" src = "firebase.js?=20"></script>
+  <script type = "module" src="message.js?v=21" defer></script>
 </body>
 </html>
