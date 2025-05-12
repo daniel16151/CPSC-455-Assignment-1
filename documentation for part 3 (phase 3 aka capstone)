@@ -24,3 +24,6 @@ securely while also scanning for any potential malware. It was originally in our
 After adjusting our file upload / send logic with firebase in mind, we added reconnection logic (although you do have to relogin each time it occurs). We then utilized a cryptography library
 to generate a key from Fernet, to encrypt the messages on the server side. We also had to update logging to access the SQL database through Postgres on Railway, which allows user data to be stored
 properly, without any concerns of destruction when pushing new updates to server.py. 
+
+Getting close to completion for the project, we decided to finalize the encrpytion enhancements with actual end to end, alongside adding in an actual offline list with a typing indicator. They were
+all branched for now to see if they can be furtherly improved, just in case if anything goes wrong.
