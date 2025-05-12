@@ -50,3 +50,5 @@ day 7:
 - added firebase storage link to CSP to enable access to file upload
 - added in end to end encrpytion and branched that just to make sure it functions right or not
 - same with the addition to offline list and adding in typing indicator, which were all branched as well just in case
+- removed end to end encryption, could not get it to function properly 
+- offline list did not make the cut, but the typing indicator did 
