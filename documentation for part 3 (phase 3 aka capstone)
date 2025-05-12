@@ -27,3 +27,6 @@ properly, without any concerns of destruction when pushing new updates to server
 
 Getting close to completion for the project, we decided to finalize the encrpytion enhancements with actual end to end, alongside adding in an actual offline list with a typing indicator. They were
 all branched for now to see if they can be furtherly improved, just in case if anything goes wrong.
+Unfortunately, we could not get the end-to-end encryption to stick. Kept running into problems with messages
+not being sent to the receiver. Offline list also ran into problems, so we just implemented the typing
+indicator and calling it there. 

@@ -2,7 +2,18 @@ const SERVER_URI = "wss://web-production-860cc.up.railway.app/ws";
 let ws, currentTarget = null;
 let reconnectInterval = 1000; 
 const maxInterval       = 30000;
+const typingDiv = document.getElementById("typing");
 
+    let typingTimeout = null;
+    document.getElementById("msgInput").addEventListener("input", () => {
+    if (!username || !currentTarget) return;
+    ws.send(JSON.stringify({ type: "typing", target: currentTarget }));
+    clearTimeout(typingTimeout);
+    typingTimeout = setTimeout(() => {
+        ws.send(JSON.stringify({ type: "stop_typing", target: currentTarget }));
+    }, 1500);
+    });
+    
 function sanitizeText(text) {
   return text.replace(/[<>]/g, "");
 }
@@ -114,6 +125,14 @@ ws.onmessage = async evt => {
     log(text);
     return;
   }
+  if (data.typing) {
+    typingDiv.textContent = `${data.typing} is typing…`;
+    return;
+}
+    if (data.stop_typing) {
+        typingDiv.textContent = "";
+        return;
+    }
 
   if (data.type === "file_url" && data.url && data.filename) {
     renderFileLink(data.url, data.filename);
