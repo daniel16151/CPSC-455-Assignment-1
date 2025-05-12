@@ -26,4 +26,4 @@ to generate a key from Fernet, to encrypt the messages on the server side. We al
 properly, without any concerns of destruction when pushing new updates to server.py. 
 
 Getting close to completion for the project, we decided to finalize the encrpytion enhancements with actual end to end, alongside adding in an actual offline list with a typing indicator. They were
-all branched for now to see if they can be furtherly improved, just in case anything goes wrong.
+all branched for now to see if they can be furtherly improved, just in case if anything goes wrong.
