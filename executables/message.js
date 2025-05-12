@@ -2,6 +2,42 @@ const SERVER_URI = "wss://web-production-860cc.up.railway.app/ws";
 let ws, currentTarget = null;
 let reconnectInterval = 1000; 
 const maxInterval       = 30000;
+const FERNET_KEY = "FERNET_KEY";
+
+async function encryptMessage(message) {
+    const encodedMessage = new TextEncoder().encode(message);
+    const response = await fetch('/encrypt', { 
+        method: 'POST', 
+        body: JSON.stringify({ key: FERNET_KEY, message: encodedMessage }) 
+    });
+    const { encrypted } = await response.json();
+    return encrypted;
+}
+
+async function decryptMessage(encryptedMessage) {
+    const response = await fetch('/decrypt', { 
+        method: 'POST', 
+        body: JSON.stringify({ key: FERNET_KEY, encryptedMessage }) 
+    });
+    const { message } = await response.json();
+    return message;
+}
+
+function sendText(msg) {
+    if (!ws || ws.readyState !== WebSocket.OPEN) return;
+    const encryptedMsg = encryptMessage(msg);
+    ws.send(encryptedMsg);
+}
+
+ws.onmessage = async evt => {
+    if (evt.data instanceof ArrayBuffer) {
+        const encryptedFile = new Uint8Array(evt.data);
+        const decryptedFile = await decryptMessage(encryptedFile);
+    } else {
+        const decryptedMessage = await decryptMessage(evt.data);
+        console.log(decryptedMessage);
+    }
+};
 
 function sanitizeText(text) {
   return text.replace(/[<>]/g, "");
