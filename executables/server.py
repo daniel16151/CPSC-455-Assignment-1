@@ -98,7 +98,12 @@ async def heartbeat():
             await broadcast_online_users()
             await client.close()
 
-            
+def encrypt_message(message: str) -> str:
+    return cipher.encrypt(message.encode("utf-8")).decode("utf-8")
+
+def decrypt_message(encrypted_message: str) -> str:
+    return cipher.decrypt(encrypted_message.encode("utf-8")).decode("utf-8")
+
 async def messaging(websocket): 
     print("A client connected")
     log_message("A client connected", None)
@@ -121,7 +126,16 @@ async def messaging(websocket):
                 continue
             dq.append(now)
             if isinstance(message, str):
-                if websocket in client_state:
+                decrypted_message = decrypt_message(message)
+
+                print(f"Received message: {decrypted_message}")
+                # Encrypts message before sending it to other clients idk how yet
+                encrypted_message = encrypt_message(decrypted_message)
+                await websocket.send(encrypted_message)
+            elif isinstance(message, bytes): 
+                encrypted_file = cipher.encrypt(message)
+                await websocket.send(encrypted_file)
+            if websocket in client_state:
                     state = client_state[websocket]
                     if state == "register_user":
                         username = message.strip()
