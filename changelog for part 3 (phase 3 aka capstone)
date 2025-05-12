@@ -46,5 +46,7 @@ day 6:
 - added encryption to messages between users when logging their messages
     -done through cryptography library Fernet
     
-day7:
+day 7:
 - added firebase storage link to CSP to enable access to file upload
+- added in end to end encrpytion and branched that just to make sure it functions right or not
+- same with the addition to offline list and adding in typing indicator, which were all branched as well just in case
